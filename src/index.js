@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
+import {moe_points} from "./moe_points";
 
 function App() {
     return (
@@ -34,22 +35,25 @@ function Intro() {
 function MoePointList() {
     return (
         <div className="moe-point-list">
-            <MoePoint moepoint="strong mecha" emoji="💪" color="green"/>
-            <MoePoint moepoint="tender" color="orangered"/>
-            <MoePoint moepoint="caefly" emoji="❤️" color="yellow" />
+            {
+                moe_points.map((moepoint) => (
+                        <MoePoint moepoint={moepoint.moepoint} emoji={moepoint.emoji} color={moepoint.color} />
+                    )
+                )
+            }
         </div>
     );
 }
 
-function MoePoint(props) {
+function MoePoint({moepoint, emoji, color}) {
     return (
         <div className="moe-point" style={
             {
-                backgroundColor: props.color
+                backgroundColor: color
             }
         }>
-            <span>{props.moepoint}</span>
-            <span>{props.emoji}</span>
+            <span>{moepoint}</span>
+            <span>{emoji}</span>
         </div>
     );
 }
